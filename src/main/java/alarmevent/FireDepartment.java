@@ -5,16 +5,17 @@ import eventbroker.EventBroker;
 import eventbroker.EventListener;
 
 public class FireDepartment implements EventListener {
-    private String naam;
 
-    public FireDepartment(String naam) {
-        this.naam = naam;
+    public FireDepartment(){
         EventBroker.getEventBroker().addEventListener("fire",this);
-
-
     }
-
-    public void handleEvent(Event alarm){
-        System.out.println("Fire Department  " +naam +" is checking out the " +alarm.getType()+" at "+ ((AlarmEvent) alarm).getLocatie() + " and sends an squad");
+    
+    @Override
+    public void handleEvent(Event e) {
+        if(e instanceof AlarmEvent){
+            AlarmEvent alarm = (AlarmEvent) e;
+            System.out.println("Fire squad on the move to "+alarm.getLocation()+" for "+alarm.getType());
+        }
     }
+    
 }

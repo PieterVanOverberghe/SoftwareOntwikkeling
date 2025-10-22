@@ -3,16 +3,23 @@ package alarmevent;
 import eventbroker.Event;
 import eventbroker.EventBroker;
 import eventbroker.EventListener;
+import java.util.Random;
 
 public class PoliceDepartment implements EventListener {
-    private String naam;
 
-    public PoliceDepartment(String naam) {
-        this.naam = naam;
+    Random r = new Random();
+    
+    public PoliceDepartment(){
+        // TODO is this ok?
         EventBroker.getEventBroker().addEventListener(this);
     }
-
-    public void handleEvent(Event alarm){
-        System.out.println("Police unit " +naam +" is checking out the " +alarm.getType()+" at "+ ((AlarmEvent) alarm).getLocatie());
+    
+    @Override
+    public void handleEvent(Event e) {
+        if(e instanceof AlarmEvent){
+            AlarmEvent alarm = (AlarmEvent) e;
+            System.out.println("Police unit "+r.nextInt(10)+" is checking out the "+alarm.getType()+" at "+alarm.getLocation());
+        }
     }
+    
 }

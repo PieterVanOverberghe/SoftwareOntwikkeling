@@ -1,17 +1,17 @@
 package alarmevent;
+
 import eventbroker.Event;
 
 public class AlarmEvent extends Event {
-    public String locatie;
-
-    public AlarmEvent(String type, String locatie){
-        super(type,"ALARM");
-        this.locatie = locatie;
+    
+    private final String location;
+    
+    public AlarmEvent(String type, String location){
+        super(type, type+" at "+location);
+        this.location = location;
     }
-
-    public String getLocatie(){
-        return locatie;
+    
+    public String getLocation(){
+        return location;
     }
-
-
 }

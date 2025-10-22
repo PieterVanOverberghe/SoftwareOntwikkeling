@@ -5,16 +5,25 @@ import eventbroker.EventBroker;
 import eventbroker.EventListener;
 
 public class Hospital implements EventListener {
-    private String naam;
 
-    public Hospital(String naam) {
-        this.naam = naam;
+    private String name;
+    
+    public Hospital(String name){
+        this.name = name;
         EventBroker.getEventBroker().addEventListener("fire",this);
         EventBroker.getEventBroker().addEventListener("crash",this);
-
     }
-
-    public void handleEvent(Event alarm){
-        System.out.println("Hospital " +naam +" is checking out the " +alarm.getType()+" at "+ ((AlarmEvent) alarm).getLocatie() + " and sends an ambulance");
+    
+    public String getName(){
+        return name;
     }
+    
+    @Override
+    public void handleEvent(Event e) {
+        if(e instanceof AlarmEvent){
+            AlarmEvent alarm = (AlarmEvent) e;
+            System.out.println(name+" sends an ambulance to "+alarm.getLocation()+" for "+alarm.getType());
+        }
+    }
+    
 }
