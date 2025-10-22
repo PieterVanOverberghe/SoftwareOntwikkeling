@@ -53,6 +53,7 @@ public class Connection {
     protected class ReceiverThread extends Thread{
         protected boolean running = true;
         public ReceiverThread(){
+            System.out.println("receiverthread aangemaakt");
         }
         public void run(){
             try{

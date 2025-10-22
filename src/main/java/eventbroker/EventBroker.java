@@ -104,9 +104,11 @@ final public class EventBroker implements Runnable{
             }
         }
         Set<EventListener> luisteraars = specifiekeListeners.get(e.getType());
-        for(EventListener l: luisteraars){
-            if(l != source){
-                l.handleEvent(e);
+        if(luisteraars!=null){
+            for(EventListener l: luisteraars){
+                if(l != source){
+                    l.handleEvent(e);
+                }
             }
         }
     }

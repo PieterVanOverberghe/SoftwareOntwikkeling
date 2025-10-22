@@ -21,6 +21,7 @@ public class Network extends EventPublisher implements EventListener {
         this.eventbroker = EventBroker.getEventBroker();
         eventbroker.addEventListener(this);
 
+
         listener = new ConnectionListener(this,serverport);
         listener.start();
     }
