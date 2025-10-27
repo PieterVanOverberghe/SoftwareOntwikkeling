@@ -11,9 +11,10 @@ public class ConnectionListener extends Thread {
     protected boolean running = true;
     protected ServerSocket serversocket;
 
-    public ConnectionListener(Network network, int serverport){
+    public ConnectionListener(Network network, int serverport) throws IOException {
         this.network = network;
         this.serverport = serverport;
+        serversocket = new ServerSocket(serverport);
 
     }
 
@@ -28,7 +29,7 @@ public class ConnectionListener extends Thread {
 
     public void run(){
         try{
-            serversocket = new ServerSocket(serverport);
+
             while(running){
                 Socket socket = serversocket.accept();
                 network.connect(socket); //maak connectie aan

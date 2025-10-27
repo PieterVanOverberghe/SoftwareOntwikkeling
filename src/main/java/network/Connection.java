@@ -18,6 +18,7 @@ public class Connection {
     public Connection(Socket socket, Network network) throws IOException {
         this.socket = socket;
         this.network = network;
+
         out = new ObjectOutputStream(socket.getOutputStream());
         out.flush();
         in = new ObjectInputStream(socket.getInputStream());
@@ -59,7 +60,9 @@ public class Connection {
             try{
                 while(running){
                     Event e = (Event) in.readObject();
+                    network.ontvangenDitNetwerk =true;
                     network.publishEvent(e);
+                    network.ontvangenDitNetwerk = false;
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);

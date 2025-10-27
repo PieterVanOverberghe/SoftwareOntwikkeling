@@ -4,11 +4,12 @@ import eventbroker.Event;
 import eventbroker.EventBroker;
 import eventbroker.EventListener;
 
-public class Hospital implements EventListener {
+public class Hospital extends Client implements EventListener {
 
     private String name;
     
     public Hospital(String name){
+        super();
         this.name = name;
         EventBroker.getEventBroker().addEventListener("fire",this);
         EventBroker.getEventBroker().addEventListener("crash",this);

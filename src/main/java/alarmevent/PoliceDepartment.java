@@ -5,12 +5,12 @@ import eventbroker.EventBroker;
 import eventbroker.EventListener;
 import java.util.Random;
 
-public class PoliceDepartment implements EventListener {
+public class PoliceDepartment extends Client implements EventListener {
 
     Random r = new Random();
     
     public PoliceDepartment(){
-        // TODO is this ok?
+        super();
         EventBroker.getEventBroker().addEventListener(this);
     }
     
