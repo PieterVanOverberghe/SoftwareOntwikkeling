@@ -15,8 +15,8 @@ public class Hospital  implements EventListener {
 //        InetAddress host = InetAddress.getLocalHost();
 //        super(host,1024);
         this.name = name;
-        EventBroker.getEventBroker().addEventListener("fire",this);
-        EventBroker.getEventBroker().addEventListener("crash",this);
+//        EventBroker.getEventBroker().addEventListener("fire",this);
+//        EventBroker.getEventBroker().addEventListener("crash",this);
     }
     
     public String getName(){

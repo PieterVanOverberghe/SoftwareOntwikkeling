@@ -11,8 +11,8 @@ public class ClientMain {
         EventBroker.getEventBroker().start();
 
         PoliceDepartment police1 = new PoliceDepartment();
-//        PoliceDepartment police2 = new PoliceDepartment();
-        Hospital UZ = new Hospital("UZ");
+        PoliceDepartment police2 = new PoliceDepartment();
+//        Hospital UZ = new Hospital("UZ");
         FireDepartment brandweer = new FireDepartment();
 
         EmergencyCallCenter center1 = new EmergencyCallCenter("112");
