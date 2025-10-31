@@ -8,7 +8,7 @@ import java.net.Socket;
 public class ConnectionListener extends Thread {
     protected Network network;
     protected int serverport;
-    protected boolean running = true;
+    protected volatile boolean running = true;
     protected ServerSocket serversocket;
 
     public ConnectionListener(Network network, int serverport){
@@ -20,7 +20,7 @@ public class ConnectionListener extends Thread {
     public void terminate(){
         running = false;
         try{
-            serversocket.close();
+            if (serversocket!=null) serversocket.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -30,11 +30,21 @@ public class ConnectionListener extends Thread {
         try{
             serversocket = new ServerSocket(serverport);
             while(running){
-                Socket socket = serversocket.accept();
-                network.connect(socket); //maak connectie aan
+                try{
+                    Socket socket = serversocket.accept();
+                    network.connect(socket); //maak connectie aan
+                }catch (Exception e2){
+                    if(!running){
+                        break;
+                    } else {
+                        e2.printStackTrace();
+                    }
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }finally {
+            try{ if(serversocket != null) serversocket.close(); } catch(Exception e){e.printStackTrace();}
         }
 
     }

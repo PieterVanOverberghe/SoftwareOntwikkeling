@@ -1,4 +1,5 @@
 module Framework {
+//    requires Framework;
 //    requires javafx.controls;
 //    requires javafx.fxml;
 //

@@ -29,6 +29,9 @@ public class Connection {
             out.writeObject(e);
             out.flush();
         } catch (IOException ex) {
+            network.removeConnection(this);
+            System.out.println("er ging iets fout bij get versturen van een event in connection");
+            try{ close(); } catch(Exception e2){e2.printStackTrace(); }
             throw new RuntimeException(ex);
         }
     }
@@ -46,24 +49,32 @@ public class Connection {
             in.close();
             out.close();
             socket.close();
+            network.removeConnection(this);
         }
 
     }
 
     protected class ReceiverThread extends Thread{
         protected boolean running = true;
+
         public ReceiverThread(){
             System.out.println("receiverthread aangemaakt");
         }
+
         public void run(){
             try{
                 while(running){
                     Event e = (Event) in.readObject();
-                    network.publishEvent(e);
+                    if(e == null) continue;
+                    network.publishFromConnection(e,Connection.this);
                 }
             } catch (IOException e) {
+                running = false;
+                System.out.println("er ging iets mis in receiverthread en nu staat hij uit");
                 throw new RuntimeException(e);
             } catch (ClassNotFoundException e) {
+                running = false;
+                System.out.println("er ging iets mis in receiverthread en nu staat hij uit");
                 throw new RuntimeException(e);
             }
         }

@@ -4,9 +4,14 @@ import eventbroker.Event;
 import eventbroker.EventBroker;
 import eventbroker.EventListener;
 
-public class FireDepartment implements EventListener {
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
-    public FireDepartment(){
+public class FireDepartment extends Client implements EventListener {
+
+    public FireDepartment() throws UnknownHostException {
+        InetAddress host = InetAddress.getLocalHost();
+        super(host,1024);
         EventBroker.getEventBroker().addEventListener("fire",this);
     }
     
