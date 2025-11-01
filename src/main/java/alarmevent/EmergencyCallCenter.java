@@ -30,6 +30,7 @@ public class EmergencyCallCenter extends EventPublisher{
     }
 
     public static void main(String[] args) throws UnknownHostException, InterruptedException {
+        System.out.println("Op welk nummer kan je dit callcentrum bereiken?");
         Scanner myObj = new Scanner(System.in);
         String nummer = myObj.nextLine();
         EmergencyCallCenter centrum = new EmergencyCallCenter(nummer);

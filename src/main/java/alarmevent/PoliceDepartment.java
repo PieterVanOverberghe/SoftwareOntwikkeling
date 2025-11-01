@@ -30,6 +30,7 @@ public class PoliceDepartment extends Client implements EventListener {
     }
 
     public static void main(String[] args) throws UnknownHostException, InterruptedException {
+        System.out.println("geef de naam van je politiekantoor");
         Scanner myObj = new Scanner(System.in);
         String naam = myObj.nextLine();
         PoliceDepartment police = new PoliceDepartment(naam);

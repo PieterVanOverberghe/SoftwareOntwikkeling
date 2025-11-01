@@ -34,6 +34,7 @@ public class Hospital extends Client  implements EventListener {
     }
 
     public static void main(String[] args) throws UnknownHostException, InterruptedException {
+        System.out.println("geef de naam van je ziekenhuis");
         Scanner myObj = new Scanner(System.in);
         String naam = myObj.nextLine();
         Hospital hospital = new Hospital(naam);

@@ -101,6 +101,8 @@ public class Network extends EventPublisher implements EventListener {
     public void publishFromConnection(Event e, Connection from) {
         Event eventToSend = e;
 
+
+        //eigenlijk zorg ik er gwn voor dat als het voor de eerste keer hier komt(dat is in server) dat hij dan de event "merkt" en dat al de rest ziet dat hij al eens geforward is naar alle connecties via server
         if (e instanceof AlarmEvent alarm) {
             if (alarm.getOriginId() == null) {
                 eventToSend = new AlarmEvent(alarm.getType(), alarm.getLocation(), this.networkId);
