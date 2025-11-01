@@ -58,7 +58,7 @@ public class Connection {
         protected boolean running = true;
 
         public ReceiverThread(){
-            System.out.println("receiverthread aangemaakt");
+//            System.out.println("receiverthread aangemaakt");
         }
 
         public void run(){
