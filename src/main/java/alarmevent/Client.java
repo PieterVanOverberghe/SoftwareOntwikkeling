@@ -12,6 +12,7 @@ public class Client {
     int serverport;
 
     public Client(InetAddress host, int serverport) throws UnknownHostException {
+        EventBroker.getEventBroker().start();
         this.serverport = serverport;
         this.host = host;
 
